@@ -13,6 +13,7 @@ class Card {
     this.id = randomUUID();
   }
 
+  // PATTERN:Prototype
   public clone(): Card {
     const clonedCard = Object.create(Object.getPrototypeOf(this));
     clonedCard.id = randomUUID();
@@ -22,6 +23,7 @@ class Card {
     return clonedCard;
   }
 
+  // PATTERN:Prototype
   public cloneWithName(newName: string): Card {
     const clonedCard = Object.create(Object.getPrototypeOf(this));
     clonedCard.id = this.id;
@@ -31,6 +33,7 @@ class Card {
     return clonedCard;
   }
 
+  // PATTERN:Prototype
   public cloneWithDescription(newDescription: string): Card {
     const clonedCard = Object.create(Object.getPrototypeOf(this));
     clonedCard.id = this.id;
