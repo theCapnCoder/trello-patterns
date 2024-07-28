@@ -58,7 +58,7 @@ class CardHandler extends SocketHandler {
       list.id === listId
         ? list.setCards(
             list.cards.map((card) =>
-              card.id === cardId ? { ...card, name: newName } : card
+              card.id === cardId ? card.cloneWithName(newName) : card
             )
           )
         : list
@@ -80,7 +80,7 @@ class CardHandler extends SocketHandler {
         ? list.setCards(
             list.cards.map((card) =>
               card.id === cardId
-                ? { ...card, description: newDescription }
+                ? card.cloneWithDescription(newDescription)
                 : card
             )
           )
@@ -100,7 +100,7 @@ class CardHandler extends SocketHandler {
             list.cards.concat(
               list.cards
                 .filter((card) => card.id === cardId)
-                .map((card) => new Card(card.name, card.description))
+                .map((card) => card.clone())
             )
           )
         : list
