@@ -1,4 +1,4 @@
 [services]
   [services.server]
   start = "npm run start --workspace=server"
-  port = 3000
+  port = 3005
