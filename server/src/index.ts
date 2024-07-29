@@ -9,7 +9,7 @@ import { CardHandler, ListHandler } from "./handlers/handlers";
 import { ReorderService } from "./services/reorder.service";
 
 const PORT = process.env.PORT || 3000;
-const CLIENT_PORT = process.env.CLIENT_PORT || 5173;
+const CLIENT_PORT = process.env.CLIENT_PORT || 5172;
 
 const app = express();
 const httpServer = createServer(app);
