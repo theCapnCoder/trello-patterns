@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import { createServer } from 'http';
 import { Server, Socket } from 'socket.io';
 import { createProxyMiddleware } from 'http-proxy-middleware';
