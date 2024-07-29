@@ -2,7 +2,3 @@
   [services.server]
   start = "npm run start --workspace=server"
   port = 3000
-
-  [services.client]
-  start = "npm run start --workspace=client"
-  port = 5173
