@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "Starter for Patterns Practises and Principles homework. Binary Studio Academy",
   "scripts": {
-    "start": "concurrently \"npm run start --workspace=server\" \"npm run start --workspace=client\""
+    "start:server": "npm run start --workspace=server",
+    "start:client": "npm run start --workspace=client",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\""
   },
   "author": "Vitalii Yarmus",
   "license": "MIT",
