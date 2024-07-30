@@ -1,5 +1,5 @@
-import { Card } from '../data/models/card';
-import { List } from '../data/models/list';
+import type { Card } from '../data/models/card';
+import type { List } from '../data/models/list';
 
 class ReorderService {
   public reorder<T>(items: T[], startIndex: number, endIndex: number): T[] {

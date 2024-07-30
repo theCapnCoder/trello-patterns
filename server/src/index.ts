@@ -1,5 +1,6 @@
 import { createServer } from 'http';
-import { Server, Socket } from 'socket.io';
+import { Server } from 'socket.io';
+import type { Socket } from 'socket.io';
 
 import { lists } from './assets/mock-data';
 import { Database } from './data/database';
@@ -30,6 +31,7 @@ const onConnection = (socket: Socket): void => {
 
 io.on('connection', onConnection);
 
+// eslint-disable-next-line no-console
 httpServer.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
 export { httpServer };

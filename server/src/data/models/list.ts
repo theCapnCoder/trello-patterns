@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 
-import { Card } from './card';
+import type { Card } from './card';
 
 class List {
   public id: string;
@@ -14,11 +14,10 @@ class List {
     this.id = randomUUID();
   }
 
-  setCards(cards: Card[]) {
+  public setCards(cards: Card[]): List {
     this.cards = cards;
 
     return this;
   }
 }
-
 export { List };
