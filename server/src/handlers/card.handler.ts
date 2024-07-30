@@ -1,8 +1,8 @@
-import type { Socket } from "socket.io";
+import type { Socket } from 'socket.io';
 
-import { CardEvent } from "../common/enums/enums";
-import { Card } from "../data/models/card";
-import { SocketHandler } from "./socket.handler";
+import { CardEvent } from '../common/enums/enums';
+import { Card } from '../data/models/card';
+import { SocketHandler } from './socket.handler';
 
 class CardHandler extends SocketHandler {
   public handleConnection(socket: Socket): void {
@@ -15,10 +15,10 @@ class CardHandler extends SocketHandler {
   }
 
   public createCard(listId: string, cardName: string): void {
-    const newCard = new Card(cardName, "");
+    const newCard = new Card(cardName, '');
     const lists = this.db.getData();
 
-    const updatedLists = lists.map((list) =>
+    const updatedLists = lists.map(list =>
       list.id === listId ? list.setCards(list.cards.concat(newCard)) : list
     );
 
@@ -30,7 +30,7 @@ class CardHandler extends SocketHandler {
     sourceIndex,
     destinationIndex,
     sourceListId,
-    destinationListId,
+    destinationListId
   }: {
     sourceIndex: number;
     destinationIndex: number;
@@ -44,7 +44,7 @@ class CardHandler extends SocketHandler {
       sourceIndex,
       destinationIndex,
       sourceListId,
-      destinationListId,
+      destinationListId
     });
 
     this.db.setData(reordered);
@@ -54,10 +54,10 @@ class CardHandler extends SocketHandler {
   public renameCard(listId: string, cardId: string, newName: string): void {
     const lists = this.db.getData();
 
-    const updatedLists = lists.map((list) =>
+    const updatedLists = lists.map(list =>
       list.id === listId
         ? list.setCards(
-            list.cards.map((card) =>
+            list.cards.map(card =>
               card.id === cardId ? { ...card, name: newName } : card
             )
           )
@@ -75,10 +75,10 @@ class CardHandler extends SocketHandler {
   ): void {
     const lists = this.db.getData();
 
-    const updatedLists = lists.map((list) =>
+    const updatedLists = lists.map(list =>
       list.id === listId
         ? list.setCards(
-            list.cards.map((card) =>
+            list.cards.map(card =>
               card.id === cardId
                 ? { ...card, description: newDescription }
                 : card
@@ -94,13 +94,13 @@ class CardHandler extends SocketHandler {
   public duplicateCard(listId: string, cardId: string): void {
     const lists = this.db.getData();
 
-    const updatedLists = lists.map((list) =>
+    const updatedLists = lists.map(list =>
       list.id === listId
         ? list.setCards(
             list.cards.concat(
               list.cards
-                .filter((card) => card.id === cardId)
-                .map((card) => new Card(card.name, card.description))
+                .filter(card => card.id === cardId)
+                .map(card => new Card(card.name, card.description))
             )
           )
         : list
@@ -113,9 +113,9 @@ class CardHandler extends SocketHandler {
   public deleteCard(listId: string, cardId: string): void {
     const lists = this.db.getData();
 
-    const updatedLists = lists.map((list) =>
+    const updatedLists = lists.map(list =>
       list.id === listId
-        ? list.setCards(list.cards.filter((card) => card.id !== cardId))
+        ? list.setCards(list.cards.filter(card => card.id !== cardId))
         : list
     );
 

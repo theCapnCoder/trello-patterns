@@ -1,8 +1,8 @@
-import type { Socket } from "socket.io";
+import type { Socket } from 'socket.io';
 
-import { ListEvent } from "../common/enums/enums";
-import { List } from "../data/models/list";
-import { SocketHandler } from "./socket.handler";
+import { ListEvent } from '../common/enums/enums';
+import { List } from '../data/models/list';
+import { SocketHandler } from './socket.handler';
 
 class ListHandler extends SocketHandler {
   public handleConnection(socket: Socket): void {
@@ -37,7 +37,7 @@ class ListHandler extends SocketHandler {
 
   private renameList(listId: string, newName: string): void {
     const lists = this.db.getData();
-    const updatedLists = lists.map((list) =>
+    const updatedLists = lists.map(list =>
       list.id === listId ? new List(newName).setCards(list.cards) : list
     );
     this.db.setData(updatedLists);
@@ -46,7 +46,7 @@ class ListHandler extends SocketHandler {
 
   private deleteList(listId: string): void {
     const lists = this.db.getData();
-    const updatedLists = lists.filter((list) => list.id !== listId);
+    const updatedLists = lists.filter(list => list.id !== listId);
     this.db.setData(updatedLists);
     this.updateLists();
   }

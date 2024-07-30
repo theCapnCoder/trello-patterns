@@ -1,8 +1,8 @@
-import { Server, Socket } from "socket.io";
+import { Server, Socket } from 'socket.io';
 
-import { ListEvent } from "../common/enums/enums";
-import { Database } from "../data/database";
-import { ReorderService } from "../services/reorder.service";
+import { ListEvent } from '../common/enums/enums';
+import { Database } from '../data/database';
+import { ReorderService } from '../services/reorder.service';
 
 abstract class SocketHandler {
   protected db: Database;

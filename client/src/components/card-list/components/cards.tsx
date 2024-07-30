@@ -1,12 +1,12 @@
 import type {
   DraggableProvided,
-  DraggableStateSnapshot,
-} from "@hello-pangea/dnd";
-import { Draggable } from "@hello-pangea/dnd";
-import React from "react";
+  DraggableStateSnapshot
+} from '@hello-pangea/dnd';
+import { Draggable } from '@hello-pangea/dnd';
+import React from 'react';
 
-import { type Card } from "../../../common/types/types";
-import { CardItem } from "../../card-item/card-item";
+import { type Card } from '../../../common/types/types';
+import { CardItem } from '../../card-item/card-item';
 
 type Props = {
   listId: string;

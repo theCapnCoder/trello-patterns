@@ -1,21 +1,21 @@
 import type {
   DraggableProvided,
-  DraggableStateSnapshot,
-} from "@hello-pangea/dnd";
-import { Draggable } from "@hello-pangea/dnd";
+  DraggableStateSnapshot
+} from '@hello-pangea/dnd';
+import { Draggable } from '@hello-pangea/dnd';
 
-import { type Card } from "../../common/types/types";
-import { CardsList } from "../card-list/card-list";
-import { DeleteButton } from "../primitives/delete-button";
-import { Splitter } from "../primitives/styled/splitter";
-import { Title } from "../primitives/title";
-import { Footer } from "./components/footer";
-import { Container } from "./styled/container";
-import { Header } from "./styled/header";
-import { socket } from "../../context/socket";
-import { ListEvent } from "../../common/enums/list-event.enum";
-import { useState } from "react";
-import { CardEvent } from "../../common/enums/enums";
+import { type Card } from '../../common/types/types';
+import { CardsList } from '../card-list/card-list';
+import { DeleteButton } from '../primitives/delete-button';
+import { Splitter } from '../primitives/styled/splitter';
+import { Title } from '../primitives/title';
+import { Footer } from './components/footer';
+import { Container } from './styled/container';
+import { Header } from './styled/header';
+import { socket } from '../../context/socket';
+import { ListEvent } from '../../common/enums/list-event.enum';
+import { useState } from 'react';
+import { CardEvent } from '../../common/enums/enums';
 
 type Props = {
   listId: string;
