@@ -1,4 +1,4 @@
-import type { Socket } from "socket.io";
+import type { Socket } from 'socket.io';
 
 import { CardEvent } from "../common/enums/enums";
 import { Card } from "../data/models/card";
@@ -61,7 +61,7 @@ class CardHandler extends SocketHandler {
     sourceIndex,
     destinationIndex,
     sourceListId,
-    destinationListId,
+    destinationListId
   }: {
     sourceIndex: number;
     destinationIndex: number;
