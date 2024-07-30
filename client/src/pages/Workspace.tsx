@@ -1,18 +1,14 @@
-import type {
-  DraggableLocation,
-  DroppableProvided,
-  DropResult,
-} from "@hello-pangea/dnd";
-import { DragDropContext, Droppable } from "@hello-pangea/dnd";
-import React, { useContext, useEffect, useState } from "react";
+import type { DroppableProvided, DropResult } from '@hello-pangea/dnd';
+import { DragDropContext, Droppable } from '@hello-pangea/dnd';
+import React, { useContext, useEffect, useState } from 'react';
 
-import { CardEvent, ListEvent } from "../common/enums/enums";
-import { type List } from "../common/types/types";
-import { Column } from "../components/column/column";
-import { ColumnCreator } from "../components/column-creator/column-creator";
-import { SocketContext } from "../context/socket";
-import { reorderService } from "../services/reorder.service";
-import { Container } from "./styled/container";
+import { CardEvent, ListEvent } from '../common/enums/enums';
+import { type List } from '../common/types/types';
+import { Column } from '../components/column/column';
+import { ColumnCreator } from '../components/column-creator/column-creator';
+import { SocketContext } from '../context/socket';
+import { reorderService } from '../services/reorder.service';
+import { Container } from './styled/container';
 
 export const Workspace = () => {
   const [lists, setLists] = useState<List[]>([]);
@@ -29,12 +25,11 @@ export const Workspace = () => {
   }, []);
 
   const onDragEnd = (result: DropResult) => {
-    if (!result.destination) {
+    const { source, destination } = result;
+
+    if (!destination) {
       return;
     }
-
-    const source: DraggableLocation = result.source;
-    const destination: DraggableLocation = result.destination;
 
     const isNotMoved =
       source.droppableId === destination.droppableId &&
@@ -44,7 +39,7 @@ export const Workspace = () => {
       return;
     }
 
-    const isReorderLists = result.type === "COLUMN";
+    const isReorderLists = result.type === 'COLUMN';
 
     if (isReorderLists) {
       setLists(
@@ -60,7 +55,7 @@ export const Workspace = () => {
       sourceListId: source.droppableId,
       destinationListId: destination.droppableId,
       sourceIndex: source.index,
-      destinationIndex: destination.index,
+      destinationIndex: destination.index
     });
   };
 

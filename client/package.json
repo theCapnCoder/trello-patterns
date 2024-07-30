@@ -6,9 +6,13 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "_prettier": "prettier \"**/*.{js,ts,tsx,json,md,css,html}\"",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "format": "npm run _prettier -- --write",
+    "lint:format": "npm run _prettier -- --check",
+    "lint:js": "npx eslint . --max-warnings=0 --no-warn-ignored",
+    "preview": "vite preview",
+    "start": "vite"
   },
   "dependencies": {
     "@atlaskit/theme": "12.2.8",
@@ -19,10 +23,19 @@
     "socket.io-client": "4.7.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@types/eslint__js": "^8.42.3",
     "@types/react": "16.14.35",
     "@types/react-dom": "18.0.11",
     "@vitejs/plugin-react": "3.1.0",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.35.0",
+    "globals": "^15.8.0",
+    "prettier": "^3.3.3",
     "typescript": "4.9.5",
+    "typescript-eslint": "^7.18.0",
     "vite": "4.1.1",
     "vite-plugin-svgr": "4.2.0"
   }
