@@ -1,8 +1,4 @@
-import type {
-  DraggableLocation,
-  DroppableProvided,
-  DropResult
-} from '@hello-pangea/dnd';
+import type { DroppableProvided, DropResult } from '@hello-pangea/dnd';
 import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 import React, { useContext, useEffect, useState } from 'react';
 
@@ -29,12 +25,11 @@ export const Workspace = () => {
   }, []);
 
   const onDragEnd = (result: DropResult) => {
-    if (!result.destination) {
+    const { source, destination } = result;
+
+    if (!destination) {
       return;
     }
-
-    const source: DraggableLocation = result.source;
-    const destination: DraggableLocation = result.destination;
 
     const isNotMoved =
       source.droppableId === destination.droppableId &&

@@ -14,7 +14,6 @@ import { Container } from './styled/container';
 import { Header } from './styled/header';
 import { socket } from '../../context/socket';
 import { ListEvent } from '../../common/enums/list-event.enum';
-import { useState } from 'react';
 import { CardEvent } from '../../common/enums/enums';
 
 type Props = {
