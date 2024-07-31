@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@atlaskit/theme": "12.2.8",
+    "@emotion/react": "^11.10.5",
     "@emotion/styled": "11.10.5",
     "@hello-pangea/dnd": "16.2.0",
     "react": "16.14.0",
