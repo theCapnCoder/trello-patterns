@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "description": "Starter for Patterns Practises and Principles homework. Binary Studio Academy",
   "scripts": {
+    "install": "npm install --legacy-peer-deps",
     "_prettier": "prettier \"**/*.{js,ts,tsx,json,md,css,html}\"",
     "format": "npm run _prettier -- --write",
     "lint:format": "npm run _prettier -- --check",

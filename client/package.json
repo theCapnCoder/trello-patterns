@@ -9,6 +9,7 @@
     "_prettier": "prettier \"**/*.{js,ts,tsx,json,md,css,html}\"",
     "build": "tsc && vite build",
     "format": "npm run _prettier -- --write",
+    "install": "npm install --legacy-peer-deps",
     "lint:format": "npm run _prettier -- --check",
     "lint:js": "npx eslint . --max-warnings=0 --no-warn-ignored",
     "preview": "vite preview",
