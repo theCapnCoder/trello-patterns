@@ -1,5 +1,28 @@
 # BSA patterns practices and principles homework starter
 
+## Functionality **(8/8)**
+
+ - Adding lists - **DONE**
+ - Deleting lists - **DONE**
+ - Renaming lists - **DONE**
+ - Adding cards - **DONE**
+ - Deleting cards - **DONE**
+ - Renaming cards - **DONE**
+ - Changing the description of the cards - **DONE**
+ - Duplication of cards - **DONE**
+
+## Backend: **(2/3)
+
+ - Prototype - **DONE**
+ - Observer - **DONE**
+ - Proxy - **NO**
+
+## Extra **(2/3)**
+
+ - Deploy [Railway](https://frontend-production-039b.up.railway.app/)- **DONE**
+ - Memento pattern - **NO**
+ - Add Prettier and eslint to the project - **DONE**
+
 ## Info
 
 - This project saves data in memory so you don't need any database
