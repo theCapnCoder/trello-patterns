@@ -1,4 +1,4 @@
-import { Observer } from "./types";
+import type { Observer } from './types';
 
 // PATTERN:Observer - Publisher
 class Logger {
@@ -9,11 +9,11 @@ class Logger {
   }
 
   public unsubscribe(observer: Observer): void {
-    this.observer = this.observer.filter((obs) => obs !== observer);
+    this.observer = this.observer.filter(obs => obs !== observer);
   }
 
   public log(logLevel: string, message: string): void {
-    this.observer.forEach((obs) => obs.update(logLevel, message));
+    this.observer.forEach(obs => obs.update(logLevel, message));
   }
 }
 

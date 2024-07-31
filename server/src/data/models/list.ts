@@ -1,5 +1,5 @@
-import { randomUUID } from "crypto";
-import { Card } from "./card";
+import { randomUUID } from 'crypto';
+import type { Card } from './card';
 
 class List {
   public id: string;
@@ -21,7 +21,7 @@ class List {
     const clonedList = Object.create(Object.getPrototypeOf(this));
     clonedList.id = this.id;
     clonedList.name = newName;
-    clonedList.cards = this.cards.map((card) => card.clone());
+    clonedList.cards = this.cards.map(card => card.clone());
     return clonedList;
   }
 }

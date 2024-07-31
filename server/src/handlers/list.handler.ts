@@ -1,10 +1,10 @@
-import type { Socket } from "socket.io";
-import { ListEvent } from "../common/enums/enums";
-import { List } from "../data/models/list";
-import { SocketHandler } from "./socket.handler";
-import { Logger } from "../logging/logger";
-import { FileLogger } from "../logging/fileLogger";
-import { ConsoleErrorLogger } from "../logging/consoleErrorLogger";
+import type { Socket } from 'socket.io';
+import { ListEvent } from '../common/enums/enums';
+import { List } from '../data/models/list';
+import { SocketHandler } from './socket.handler';
+import { Logger } from '../logging/logger';
+import { FileLogger } from '../logging/fileLogger';
+import { ConsoleErrorLogger } from '../logging/consoleErrorLogger';
 
 // PATTERN: Observer - Logger acts as the Publisher
 const logger = new Logger();
@@ -23,8 +23,8 @@ class ListHandler extends SocketHandler {
   }
 
   private getListName(listId: string): string {
-    const list = this.db.getData().find((list) => list.id === listId);
-    return list?.name || "Unknown List";
+    const list = this.db.getData().find(list => list.id === listId);
+    return list?.name || 'Unknown List';
   }
 
   private getLists(callback: (lists: List[]) => void): void {
@@ -42,9 +42,12 @@ class ListHandler extends SocketHandler {
       this.db.setData(reorderedLists);
       this.updateLists();
 
-      logger.log("info", `Lists reordered from index ${sourceIndex} to ${destinationIndex}`);
+      logger.log(
+        'info',
+        `Lists reordered from index ${sourceIndex} to ${destinationIndex}`
+      );
     } catch (error) {
-      logger.log("error", `Error reordering lists: ${error.message}`);
+      logger.log('error', `Error reordering lists: ${error.message}`);
     }
   }
 
@@ -55,9 +58,9 @@ class ListHandler extends SocketHandler {
       this.db.setData(lists.concat(newList));
       this.updateLists();
 
-      logger.log("info", `List created: ${newList.name}`);
+      logger.log('info', `List created: ${newList.name}`);
     } catch (error) {
-      logger.log("error", `Error creating list ${name}: ${error.message}`);
+      logger.log('error', `Error creating list ${name}: ${error.message}`);
     }
   }
 
@@ -65,15 +68,18 @@ class ListHandler extends SocketHandler {
     try {
       const lists = this.db.getData();
       const oldName = this.getListName(listId);
-      const updatedLists = lists.map((list) =>
-        list.id === listId ? list.cloneWithName(newName) : list // PATTERN: Prototype
+      const updatedLists = lists.map(
+        list => (list.id === listId ? list.cloneWithName(newName) : list) // PATTERN: Prototype
       );
       this.db.setData(updatedLists);
       this.updateLists();
 
-      logger.log("info", `List ${oldName} renamed to ${newName}`);
+      logger.log('info', `List ${oldName} renamed to ${newName}`);
     } catch (error) {
-      logger.log("error", `Error renaming list ${this.getListName(listId)} to ${newName}: ${error.message}`);
+      logger.log(
+        'error',
+        `Error renaming list ${this.getListName(listId)} to ${newName}: ${error.message}`
+      );
     }
   }
 
@@ -81,13 +87,16 @@ class ListHandler extends SocketHandler {
     try {
       const lists = this.db.getData();
       const listName = this.getListName(listId);
-      const updatedLists = lists.filter((list) => list.id !== listId);
+      const updatedLists = lists.filter(list => list.id !== listId);
       this.db.setData(updatedLists);
       this.updateLists();
 
-      logger.log("info", `List ${listName} deleted`);
+      logger.log('info', `List ${listName} deleted`);
     } catch (error) {
-      logger.log("error", `Error deleting list ${this.getListName(listId)}: ${error.message}`);
+      logger.log(
+        'error',
+        `Error deleting list ${this.getListName(listId)}: ${error.message}`
+      );
     }
   }
 }

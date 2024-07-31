@@ -1,11 +1,11 @@
 import type { Socket } from 'socket.io';
 
-import { CardEvent } from "../common/enums/enums";
-import { Card } from "../data/models/card";
-import { SocketHandler } from "./socket.handler";
-import { Logger } from "../logging/logger";
-import { FileLogger } from "../logging/fileLogger";
-import { ConsoleErrorLogger } from "../logging/consoleErrorLogger";
+import { CardEvent } from '../common/enums/enums';
+import { Card } from '../data/models/card';
+import { SocketHandler } from './socket.handler';
+import { Logger } from '../logging/logger';
+import { FileLogger } from '../logging/fileLogger';
+import { ConsoleErrorLogger } from '../logging/consoleErrorLogger';
 
 // PATTERN:Observer - Logger acts as the Publisher
 const logger = new Logger();
@@ -25,22 +25,22 @@ class CardHandler extends SocketHandler {
   }
 
   private getListName(listId: string): string {
-    const list = this.db.getData().find((list) => list.id === listId);
-    return list?.name || "Unknown List";
+    const list = this.db.getData().find(list => list.id === listId);
+    return list?.name || 'Unknown List';
   }
 
   private getCardName(listId: string, cardId: string): string {
-    const list = this.db.getData().find((list) => list.id === listId);
-    const card = list?.cards.find((card) => card.id === cardId);
-    return card?.name || "Unknown Card";
+    const list = this.db.getData().find(list => list.id === listId);
+    const card = list?.cards.find(card => card.id === cardId);
+    return card?.name || 'Unknown Card';
   }
 
   public createCard(listId: string, cardName: string): void {
     try {
-      const newCard = new Card(cardName, "");
+      const newCard = new Card(cardName, '');
       const lists = this.db.getData();
 
-      const updatedLists = lists.map((list) =>
+      const updatedLists = lists.map(list =>
         list.id === listId ? list.setCards(list.cards.concat(newCard)) : list
       );
 
@@ -48,10 +48,10 @@ class CardHandler extends SocketHandler {
       this.updateLists();
 
       const listName = this.getListName(listId);
-      logger.log("info", `Card created: ${newCard.name} in list ${listName}`);
+      logger.log('info', `Card created: ${newCard.name} in list ${listName}`);
     } catch (error) {
       logger.log(
-        "error",
+        'error',
         `Error creating card ${cardName} in list ${listId}: ${error.message}`
       );
     }
@@ -78,19 +78,19 @@ class CardHandler extends SocketHandler {
         sourceIndex,
         destinationIndex,
         sourceListId,
-        destinationListId,
+        destinationListId
       });
 
       this.db.setData(reordered);
       this.updateLists();
 
       logger.log(
-        "info",
+        'info',
         `Cards reordered from list ${sourceListName} to ${destinationListName}`
       );
     } catch (error) {
       logger.log(
-        "error",
+        'error',
         `Error reordering cards from ${sourceListId} to ${destinationListId}: ${error.message}`
       );
     }
@@ -102,11 +102,11 @@ class CardHandler extends SocketHandler {
       const listName = this.getListName(listId);
       const oldName = this.getCardName(listId, cardId);
 
-      const updatedLists = lists.map((list) =>
+      const updatedLists = lists.map(list =>
         list.id === listId
           ? list.setCards(
               list.cards.map(
-                (card) =>
+                card =>
                   card.id === cardId ? card.cloneWithName(newName) : card // PATTERN:Prototype
               )
             )
@@ -117,12 +117,12 @@ class CardHandler extends SocketHandler {
       this.updateLists();
 
       logger.log(
-        "info",
+        'info',
         `Card ${oldName} renamed to ${newName} in list ${listName}`
       );
     } catch (error) {
       logger.log(
-        "error",
+        'error',
         `Error renaming card ${cardId} to ${newName} in list ${listId}: ${error.message}`
       );
     }
@@ -138,10 +138,10 @@ class CardHandler extends SocketHandler {
       const listName = this.getListName(listId);
       const cardName = this.getCardName(listId, cardId);
 
-      const updatedLists = lists.map((list) =>
+      const updatedLists = lists.map(list =>
         list.id === listId
           ? list.setCards(
-              list.cards.map((card) =>
+              list.cards.map(card =>
                 card.id === cardId
                   ? card.cloneWithDescription(newDescription) // PATTERN:Prototype
                   : card
@@ -154,12 +154,12 @@ class CardHandler extends SocketHandler {
       this.updateLists();
 
       logger.log(
-        "info",
+        'info',
         `Card ${cardName} description changed in list ${listName}`
       );
     } catch (error) {
       logger.log(
-        "error",
+        'error',
         `Error changing description of card ${cardId} in list ${listId}: ${error.message}`
       );
     }
@@ -171,13 +171,13 @@ class CardHandler extends SocketHandler {
       const listName = this.getListName(listId);
       const cardName = this.getCardName(listId, cardId);
 
-      const updatedLists = lists.map((list) =>
+      const updatedLists = lists.map(list =>
         list.id === listId
           ? list.setCards(
               list.cards.concat(
                 list.cards
-                  .filter((card) => card.id === cardId)
-                  .map((card) => card.clone()) // PATTERN:Prototype
+                  .filter(card => card.id === cardId)
+                  .map(card => card.clone()) // PATTERN:Prototype
               )
             )
           : list
@@ -186,10 +186,10 @@ class CardHandler extends SocketHandler {
       this.db.setData(updatedLists);
       this.updateLists();
 
-      logger.log("info", `Card ${cardName} duplicated in list ${listName}`);
+      logger.log('info', `Card ${cardName} duplicated in list ${listName}`);
     } catch (error) {
       logger.log(
-        "error",
+        'error',
         `Error duplicating card ${cardId} in list ${listId}: ${error.message}`
       );
     }
@@ -201,19 +201,19 @@ class CardHandler extends SocketHandler {
       const listName = this.getListName(listId);
       const cardName = this.getCardName(listId, cardId);
 
-      const updatedLists = lists.map((list) =>
+      const updatedLists = lists.map(list =>
         list.id === listId
-          ? list.setCards(list.cards.filter((card) => card.id !== cardId))
+          ? list.setCards(list.cards.filter(card => card.id !== cardId))
           : list
       );
 
       this.db.setData(updatedLists);
       this.updateLists();
 
-      logger.log("info", `Card ${cardName} deleted from list ${listName}`);
+      logger.log('info', `Card ${cardName} deleted from list ${listName}`);
     } catch (error) {
       logger.log(
-        "error",
+        'error',
         `Error deleting card ${cardId} from list ${listId}: ${error.message}`
       );
     }
