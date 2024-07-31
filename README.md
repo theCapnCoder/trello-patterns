@@ -11,7 +11,7 @@
  - Changing the description of the cards - **DONE**
  - Duplication of cards - **DONE**
 
-## Backend: **(2/3)
+## Backend: **(2/3)**
 
  - Prototype - **DONE**
  - Observer - **DONE**
